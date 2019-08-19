@@ -1,0 +1,17 @@
+{
+  "name": "js-snippets",
+  "version": "0.0.1",
+  "description": "js snippets",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "shenxl",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0"
+  }
+}
