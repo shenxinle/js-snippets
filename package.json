@@ -4,7 +4,9 @@
   "description": "js snippets",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test-pattern": "jest throttle",
+    "test-spec": "jest -t debounce"
   },
   "author": "shenxl",
   "license": "MIT",
