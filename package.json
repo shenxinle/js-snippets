@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test-pattern": "jest throttle",
+    "test-pattern": "jest bind",
     "test-spec": "jest -t debounce"
   },
   "author": "shenxl",
