@@ -8,4 +8,4 @@ export const flat = (arr) => {
     result = result.concat(arr);
   }
   return result;
-}
+};

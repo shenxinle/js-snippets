@@ -48,17 +48,17 @@ export function MyPromise(executor) {
   }
 }
 
-MyPromise.prototype.then = function(onFulfilled, onRejected) {
+MyPromise.prototype.then = function (onFulfilled, onRejected) {
   onFulfilled = onFulfilled || (val => val);
-  onRejected = onRejected || (reason => { throw reason });
+  onRejected = onRejected || (reason => { throw reason; });
   let p = new MyPromise((resolve, reject) => {
-    switch(this.state) {
+    switch (this.state) {
       case FULFILLED:
         toAsync(() => {
           try {
             let value = onFulfilled(this.value);
             resolve(value);
-          } catch(reason) {
+          } catch (reason) {
             reject(reason);
           }
         })();
@@ -68,7 +68,7 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
           try {
             let value = onRejected(this.reason);
             resolve(value);
-          } catch(reason) {
+          } catch (reason) {
             reject(reason);
           }
         })();
@@ -78,7 +78,7 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
           try {
             let value = onFulfilled(this.value);
             resolve(value);
-          } catch(reason) {
+          } catch (reason) {
             reject(reason);
           }
         }));
@@ -86,7 +86,7 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
           try {
             let value = onRejected(this.reason);
             resolve(value);
-          } catch(reason) {
+          } catch (reason) {
             reject(reason);
           }
         }));
@@ -96,11 +96,11 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
   return p;
 };
 
-MyPromise.prototype.catch = function(onRejected) {
+MyPromise.prototype.catch = function (onRejected) {
   return this.then(null, onRejected);
 };
 
-MyPromise.prototype.finally = function(fn = noop) {
+MyPromise.prototype.finally = function (fn = noop) {
   return this.then((value) => {
     fn();
     return value;
@@ -110,19 +110,19 @@ MyPromise.prototype.finally = function(fn = noop) {
   });
 };
 
-MyPromise.resolve = function(value) {
+MyPromise.resolve = function (value) {
   return new MyPromise((resolve) => {
     resolve(value);
   });
 };
 
-MyPromise.reject = function(reason) {
+MyPromise.reject = function (reason) {
   return new MyPromise((resolve, reject) => {
     reject(reason);
   });
 };
 
-MyPromise.all = function(promises) {
+MyPromise.all = function (promises) {
   if (!Array.isArray(promises)) throw new TypeError('expect promises to be an array');
 
   return new MyPromise((resolve, reject) => {
@@ -134,7 +134,7 @@ MyPromise.all = function(promises) {
       promises.forEach((p, i) => {
         p.then((value) => {
           result[i] = value;
-          resolvedCount ++;
+          resolvedCount++;
 
           if (resolvedCount === promises.length) {
             resolve(result);
@@ -147,14 +147,14 @@ MyPromise.all = function(promises) {
   });
 };
 
-MyPromise.race = function(promises) {
+MyPromise.race = function (promises) {
   if (!Array.isArray(promises)) throw new TypeError('expect promises to be an array');
 
   return new MyPromise((resolve, reject) => {
     if (!promises.length) {
       resolve();
     } else {
-      promises.forEach((p, i) => {
+      promises.forEach((p) => {
         p.then((value) => {
           resolve(value);
         }, (reason) => {

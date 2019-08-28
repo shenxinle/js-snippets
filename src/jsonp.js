@@ -1,3 +1,20 @@
+/* global window document */
+
+/**
+ * @param {string} url
+ * @param {object} params  只考虑简单的对象
+ */
+export const param = (url, params) => {
+  let arr = [];
+  if (params) {
+    Object.keys(params).forEach(key => {
+      arr.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(params[key]))}`);
+    });
+  }
+  return url + (url.indexOf('?') === -1 ? '?' : '&') + arr.join('&');
+};
+
+
 /**
  * 构建 script
  * 全局唯一 callback，用后删除
@@ -24,21 +41,7 @@ export const jsonp = (url, params, callback, onError) => {
   };
 
   document.body.appendChild(script);
-}
-
-/**
- * @param {string} url
- * @param {object} params  只考虑简单的对象
- */
-export const param = (url, params) => {
-  let arr = [];
-  if (params) {
-    for (let key in params) {
-      arr.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(params[key]))}`);
-    }
-  }
-  return url + (url.indexOf('?') === -1 ? '?' : '&') + arr.join('&');
-}
+};
 
 
 /**

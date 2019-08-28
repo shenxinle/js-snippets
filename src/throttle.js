@@ -10,8 +10,8 @@ export const throttle = (fn, wait) => {
       prev = now;
       fn.apply(this, args);
     }
-  }
-}
+  };
+};
 
 export const debounce = (fn, wait) => {
   let timeout = null;
@@ -25,5 +25,5 @@ export const debounce = (fn, wait) => {
       timeout = null;
       fn.apply(this, args);
     }, wait);
-  }
-}
+  };
+};
