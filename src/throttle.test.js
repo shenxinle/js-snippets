@@ -1,4 +1,4 @@
-import { throttle, debounce } from './throttle'
+import { throttle, debounce } from './throttle';
 
 describe('throttle', () => {
   test('throttle-count', (done) => {

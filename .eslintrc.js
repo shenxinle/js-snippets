@@ -2,7 +2,8 @@ module.exports = {
   extends: "airbnb-base",
   // extends: "eslint:recommended",
   env: {
-    es6: true
+    es6: true,
+    "jest/globals": true
   },
   globals: {
     // window: 'writable', // readonly | writable
@@ -10,7 +11,7 @@ module.exports = {
   },
   plugins: ["jest"],
   rules: { // error | warn | off
-    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "indent": ["error", 2, { "SwitchCase": 1, "MemberExpression": 0 }],
     "func-names": "off",
     "no-void": "off",
     "no-param-reassign": "off",
@@ -22,6 +23,10 @@ module.exports = {
     "prefer-template": "off",
     "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
     "default-case": "off",
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "comma-dangle": "off",
+    "no-unused-vars": ["error", { "vars": "local", "args": "none", "ignoreRestSiblings": true }],
+    "no-throw-literal": "off",
+    "newline-per-chained-call": "off"
   }
 };

@@ -5,7 +5,7 @@ describe('promise', () => {
     let p = new MyPromise((resolve, reject) => {
       setTimeout(() => {
         resolve(123);
-      })
+      });
     });
 
     p.then((value) => {
@@ -18,7 +18,7 @@ describe('promise', () => {
     let p = new MyPromise((resolve, reject) => {
       setTimeout(() => {
         reject('hehe');
-      })
+      });
     });
 
     p.then(() => {}, (reason) => {
@@ -29,7 +29,7 @@ describe('promise', () => {
 
   test('promise-async', (done) => {
     let p = new MyPromise((resolve, reject) => {
-      resolve(123)
+      resolve(123);
     });
     let result = [];
 
@@ -45,7 +45,7 @@ describe('promise', () => {
     let p = new MyPromise((resolve, reject) => {
       setTimeout(() => {
         resolve(1);
-      })
+      });
     });
     let result = [];
 
@@ -72,7 +72,7 @@ describe('promise', () => {
   test('promise-all', (done) => {
     MyPromise.all([
       MyPromise.resolve(1),
-      MyPromise.resolve(2).then(() => {return 3})
+      MyPromise.resolve(2).then(() => { return 3; })
     ]).then(result => {
       expect(result).toEqual([1, 3]);
       done();

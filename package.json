@@ -7,7 +7,7 @@
     "test": "jest",
     "test-pattern": "jest promise",
     "test-spec": "jest -t debounce",
-    "lint": "eslint src/throttle.js"
+    "lint": "eslint src/**/*.js"
   },
   "author": "shenxl",
   "license": "MIT",

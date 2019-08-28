@@ -1,11 +1,11 @@
-import "./bind";
+import './bind';
 
 describe('bind', () => {
   test('call', () => {
     const obj = {
       a: 2
     };
-    const fn = function(a, b) {
+    const fn = function (a, b) {
       return this.a + a + b;
     };
 
@@ -16,7 +16,7 @@ describe('bind', () => {
     const obj = {
       a: 2
     };
-    const fn = function(a, b) {
+    const fn = function (a, b) {
       return this.a + a + b;
     };
 
@@ -27,7 +27,7 @@ describe('bind', () => {
     const obj = {
       a: 2
     };
-    const fn = function(a, b) {
+    const fn = function (a, b) {
       return this.a + a + b;
     };
 
