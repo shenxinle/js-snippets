@@ -1,3 +1,5 @@
+/* eslint no-extend-native: ["error", { "exceptions": ["Function"] }] */
+/* global window */
 /**
  * 模拟实现 call, apply, bind
  */
@@ -7,7 +9,7 @@ Function.prototype.call2 = function (ctx, ...args) {
     return void 0;
   }
   ctx = ctx || (typeof window !== 'undefined' ? window : global);
-  const fn = Symbol();
+  const fn = Symbol('fn');
   ctx[fn] = this;
   const result = ctx[fn](...args);
   delete ctx[fn];
@@ -19,7 +21,7 @@ Function.prototype.apply2 = function (ctx, args) {
     return void 0;
   }
   ctx = ctx || (typeof window !== 'undefined' ? window : global);
-  const fn = Symbol();
+  const fn = Symbol('fn');
   ctx[fn] = this;
   const result = Array.isArray(args) ? ctx[fn](...args) : ctx[fn]();
   delete ctx[fn];
@@ -29,6 +31,6 @@ Function.prototype.apply2 = function (ctx, args) {
 Function.prototype.bind2 = function (ctx, ...args) {
   const fn = this;
   return (...moreArgs) => {
-    return fn.apply(ctx, [...args, ...moreArgs])
-  }
+    return fn.apply(ctx, [...args, ...moreArgs]);
+  };
 };

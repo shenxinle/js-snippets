@@ -4,12 +4,12 @@ export class EventEmitter {
   }
 
   on(name, fn) {
-    let fns = this.listeners[name] || (this.listeners[name] = []);
+    const fns = this.listeners[name] || (this.listeners[name] = []);
     fns.push(fn);
   }
 
   once(name, fn) {
-    let wrapFn = (...args) => {
+    const wrapFn = (...args) => {
       fn.apply(null, args);
       this.off(name, wrapFn);
     };
@@ -17,18 +17,18 @@ export class EventEmitter {
   }
 
   off(name, fn) {
-    let fns = this.listeners[name] || (this.listeners[name] = []);
+    const fns = this.listeners[name] || (this.listeners[name] = []);
 
     if (fn) {
-      this.listeners[name] = fns.filter(thisFn => thisFn !== fn);
+      this.listeners[name] = fns.filter((thisFn) => thisFn !== fn);
     } else {
       this.listeners[name] = null;
     }
   }
 
   emit(name, ...args) {
-    let fns = this.listeners[name] || (this.listeners[name] = []);
-    fns.forEach(fn => {
+    const fns = this.listeners[name] || (this.listeners[name] = []);
+    fns.forEach((fn) => {
       fn.apply(null, args);
     });
   }
