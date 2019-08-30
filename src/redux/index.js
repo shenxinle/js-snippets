@@ -67,8 +67,38 @@ export function createStore(reducer, preloadedState, enhancer) {
  * @param {object} reducers
  */
 export function bindReducers(reducers) {
+  let keys = Object.keys(reducers);
   return (state, action) => {
+    let nextState = {};
+    let changed = false;
+    keys.forEach(key => {
+      let reducer = reducers[key];
+      nextState[key] = reducer(state[key], action);
+      changed = changed || (nextState[key] !== state[key]);
+    });
+    return changed ? nextState : state;
+  };
+}
 
+function bindActionCreator(actionCreator, dispatch) {
+  return (...args) => {
+    dispatch(actionCreator(...args));
+  }
+}
+
+/**
+ * @param {object | func} actionCreators
+ * @param {func} dispatch
+ */
+export function bindActionCreators(actionCreators, dispatch) {
+  if (isFunction(actionCreators)) {
+    return bindActionCreator(actionCreators, dispatch);
+  } else {
+    let result = {};
+    Object.keys(actionCreators).forEach(key => {
+      result[key] = bindActionCreator(actionCreators[key], dispatch);
+    });
+    return result;
   }
 }
 
