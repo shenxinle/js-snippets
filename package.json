@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "test-pattern": "jest promise",
+    "test-pattern": "jest redux",
     "test-spec": "jest -t debounce",
     "lint": "eslint src/**/*.js",
     "lint-fix": "eslint src/**/*.js --fix",
