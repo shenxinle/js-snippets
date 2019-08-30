@@ -43,6 +43,7 @@ export function createStore(reducer, preloadedState, enhancer) {
     currentListeners.forEach(listener => {
       listener();
     });
+    return action;
   };
 
   const subscribe = (listener) => {
@@ -115,4 +116,20 @@ export function compose(...funcs) {
   } else {
     return funcs.reduce((a, b) => (...args) => a(b(...args)));
   }
+}
+
+export function applyMiddleware(...middlewares) {
+  return createStore => (...args) => {
+    const store = createStore(...args);
+
+    const chain = middlewares.map(middleware => middleware({
+      getState: store.getState
+    }));
+    const dispatch = compose(chain)(store.dispatch);
+
+    return {
+      ...store,
+      dispatch
+    };
+  };
 }
