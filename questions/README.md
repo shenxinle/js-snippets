@@ -72,4 +72,4 @@ https://www.xx.cn/api?keyword=&level1=&local_batch_id=&elective=800,700&local_pr
 
 10. 动态规划
 
-11. 
+11. 观察者模式和发布订阅模式
